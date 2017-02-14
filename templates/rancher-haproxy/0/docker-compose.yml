@@ -1,0 +1,33 @@
+HTTP-generate-maps:
+  environment:
+    STACK_DOMAIN: ${STACK_DOMAIN}
+    RANCHER_LABEL: ${RANCHER_LABEL}
+    RANCHER_PROXY_LABEL: ${RANCHER_PROXY_LABEL}
+  tty: true
+  command:
+  - generate-maps
+  image: nodeintegration/rancher-haproxy:0.6.2
+  volumes:
+  - /usr/local/etc/haproxy
+  stdin_open: true
+
+HTTP-public:
+  ports:
+  - ${STATS_PORT}:1936/tcp
+  - ${HTTP_PORT}:80/tcp
+  - ${HTTPS_PUBLIC_PORT}:443/tcp
+  environment:
+    ENABLE_SSL: ${ENABLE_SSL}
+    SSL_BASE64_ENCODED: ${SSL_BASE64_ENCODED}
+    ENABLE_STATS: ${ENABLE_STATS}
+    STATS_USERNAME: ${STATS_USERNAME}
+    STATS_PASSWORD: ${STATS_PASSWORD}
+    SYSLOG_HOST: ${SYSLOG_HOST}
+    SYSLOG_FACILITY: ${SYSLOG_FACILITY}
+  labels:
+    io.rancher.sidekicks: HTTP-generate-maps
+  tty: true
+  image: nodeintegration/rancher-haproxy:0.6.2
+  volumes_from:
+  - HTTP-generate-maps
+  stdin_open: true

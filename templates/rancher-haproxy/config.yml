@@ -1,0 +1,11 @@
+name: Rancher HAProxy
+description: |
+  HAProxy Load Balancer using Rancher Metadata Service.
+  This Load Balancer is intended to be used for layer 7 HTTP/s balancing for multiple stacks dynamically
+version: v0.6.2
+category: Load Balancing
+
+
+maintainer: Brendan Beveridge <brendan@nodeintegration.com.au>
+license: AGPL v3
+projectURL: https://github.com/nodeintegration/rancher-haproxy

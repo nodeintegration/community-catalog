@@ -1,0 +1,108 @@
+.catalog:
+  name: "Rancher HAProxy"
+  version: "v0.0.1"
+  description: "Rancher HAProxy LB service."
+  questions:
+    - variable: "STACK_DOMAIN"
+      label: "Stack Domain"
+      desciption: "The domain to append to the stack names ie. if your stack was: stack123 and the STACK_DOMAIN was 'dev.tld' you would be able to access the stack via: stack123.dev.tld"
+      type: "string"
+      required: true
+
+    - variable: "ENABLE_STATS"
+      label: "Enable HAProxy stats"
+      description: "Enable haproxy stats for Load Balancer."
+      type: "boolean"
+      required: false
+      default: false
+
+    - variable: "ENABLE_SSL"
+      label: "Enable SSL"
+      description: "Enable ssl support for Load Balancer. NOTE: setting this to true requires you to configure ssl certificate/key"
+      type: "boolean"
+      required: false
+      default: false
+
+    - variable: "SSL_BASE64_ENCODED"
+      label: "SSL Certificate/Key base64 encoded"
+      description: "When supplying certificate/key in metadata, this flag will assume you have base64 encoded them, this is handy if you want to use compose variables for certificates"
+      type: "boolean"
+      required: false
+      default: false
+
+    - variable: "SSL_CERT"
+      label: "SSL Certificate"
+      description: "Plain text ssl certificate or base64 encoded depending on the other variables"
+      type: "str"
+      required: false
+    - variable: "SSL_KEY"
+      label: "SSL Key"
+      description: "Plain text ssl key or base64 encoded depending on the other variables"
+      type: "str"
+      required: false
+
+    - variable: "HTTP_PUBLIC_PORT"
+      label: "HAProxy public http port"
+      description: "HAProxy public http port to bind to"
+      type: "int"
+      required: true
+      default: 80
+
+    - variable: "HTTPS_PUBLIC_PORT"
+      label: "HAProxy public https port"
+      description: "HAProxy public https port to bind to, sadly this cannot be made optional as compose templates do not have conditional ports based on a variable...though you can still leave enabling ssl as optional which means the bound port just goes nowhere."
+      type: "int"
+      required: true
+      default: 443
+
+    - variable: "STATS_PORT"
+      label: "HAProxy stats port"
+      description: "Tells haproxy what port to use for stats, sadly this cannot be made optional as compose templates do not have conditional ports based on a variable...though you can still leave enable stats as optional which means the bound port just goes nowhere."
+      type: "int"
+      required: false
+      default: 1936
+
+    - variable: "STATS_USERNAME"
+      label: "HAProxy stats username"
+      description: "haproxy stats username"
+      type: "string"
+      required: false
+      default: "haproxy"
+
+    - variable: "STATS_PASSWORD"
+      label: "HAProxy stats password"
+      description: "haproxy stats password"
+      type: "string"
+      required: false
+      default: "haproxy"
+
+    - variable: "RANCHER_LABEL"
+      label: "Rancher Label"
+      description: "Rancher Label to use for including stacks into this load balancer"
+      type: "string"
+      required: false
+      default: "map-public-http"
+
+    - variable: "RANCHER_PROXY_LABEL"
+      label: "Rancher Label"
+      description: "Rancher Label to use for backend services that want the proxy protocol used. eg RANCHER_PROXY_LABEL: this_host_wants_proxy_protocol, and in that service you would add a label with the value of 'send-proxy'."
+      type: "string"
+      required: false
+
+    - variable: "SYSLOG_HOST"
+      label: "Syslog host"
+      description: "Syslog host to send logs to...defaults to the agent ip of the container"
+      type: "string"
+      required: "false"
+
+    - variable: "SYSLOG_FACILITY"
+      label: "Syslog facility"
+      description: "Syslog facility"
+      type: "string"
+      required: "false"
+      default: "daemon"
+
+LB:
+  metadata:
+    ssl_cert: "${SSL_CERT}"
+    ssl_key: "${SSL_KEY}"
