@@ -33,13 +33,13 @@
     - variable: "SSL_CERT"
       label: "SSL Certificate"
       description: "Plain text ssl certificate or base64 encoded depending on the other variables"
-      type: "str"
+      type: "string"
       required: false
 
     - variable: "SSL_KEY"
       label: "SSL Key"
       description: "Plain text ssl key or base64 encoded depending on the other variables"
-      type: "str"
+      type: "string"
       required: false
 
     - variable: "HTTP_PUBLIC_PORT"
