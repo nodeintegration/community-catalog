@@ -85,7 +85,7 @@
       default: "map-public-http"
 
     - variable: "RANCHER_PROXY_LABEL"
-      label: "Rancher Label"
+      label: "Rancher Proxy Label"
       description: "Rancher Label to use for backend services that want the proxy protocol used. eg RANCHER_PROXY_LABEL: this_host_wants_proxy_protocol, and in that service you would add a label with the value of 'send-proxy'."
       type: "string"
       required: false
