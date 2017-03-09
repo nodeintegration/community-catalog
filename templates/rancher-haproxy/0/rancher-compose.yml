@@ -35,6 +35,7 @@
       description: "Plain text ssl certificate or base64 encoded depending on the other variables"
       type: "str"
       required: false
+
     - variable: "SSL_KEY"
       label: "SSL Key"
       description: "Plain text ssl key or base64 encoded depending on the other variables"
@@ -93,13 +94,13 @@
       label: "Syslog host"
       description: "Syslog host to send logs to...defaults to the agent ip of the container"
       type: "string"
-      required: "false"
+      required: false
 
     - variable: "SYSLOG_FACILITY"
       label: "Syslog facility"
       description: "Syslog facility"
       type: "string"
-      required: "false"
+      required: false
       default: "daemon"
 
 LB:
