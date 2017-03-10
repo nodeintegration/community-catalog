@@ -6,7 +6,7 @@ HTTP-generate-maps:
   tty: true
   command:
   - generate-maps
-  image: nodeintegration/rancher-haproxy:0.6.2
+  image: nodeintegration/rancher-haproxy:0.6.3
   volumes:
   - /usr/local/etc/haproxy
   stdin_open: true
@@ -27,7 +27,7 @@ HTTP-public:
   labels:
     io.rancher.sidekicks: HTTP-generate-maps
   tty: true
-  image: nodeintegration/rancher-haproxy:0.6.2
+  image: nodeintegration/rancher-haproxy:0.6.3
   volumes_from:
   - HTTP-generate-maps
   stdin_open: true

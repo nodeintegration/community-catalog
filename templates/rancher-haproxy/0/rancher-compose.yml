@@ -23,6 +23,21 @@
       required: false
       default: false
 
+    - variable: "ENABLE_SSL_REDIRECTION"
+      label: "Enable SSL Redirection"
+      description: "Enable HTTP -> HTTPS redirection. NOTE: this has no effect if ENABLE_SSL is false"
+      type: "boolean"
+      required: false
+      default: false
+
+    - variable: "SSL_REDIRECTION_TYPE"
+      label: "HTTPS Redirection type"
+      description: "What redirection type to use"
+      type: "enum"
+      options:
+        - 301
+        - 302
+
     - variable: "SSL_BASE64_ENCODED"
       label: "SSL Certificate/Key base64 encoded"
       description: "When supplying certificate/key in metadata, this flag will assume you have base64 encoded them, this is handy if you want to use compose variables for certificates"
