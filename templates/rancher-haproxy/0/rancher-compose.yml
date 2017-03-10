@@ -1,6 +1,6 @@
 .catalog:
   name: "Rancher HAProxy"
-  version: "v0.0.1"
+  version: "v0.1"
   description: "Rancher HAProxy LB service."
   questions:
     - variable: "STACK_DOMAIN"

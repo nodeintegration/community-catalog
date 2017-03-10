@@ -2,7 +2,7 @@ name: Rancher HAProxy
 description: |
   HAProxy Load Balancer using Rancher Metadata Service.
   This Load Balancer is intended to be used for layer 7 HTTP/s balancing for multiple stacks dynamically
-version: v0.6.2
+version: v0.1
 category: Load Balancing
 
 
